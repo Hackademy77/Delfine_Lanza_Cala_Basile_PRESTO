@@ -1,0 +1,21 @@
+*{
+    font-family: 'Merriweather', serif;
+}
+
+:root{
+    --main-green: #2eb758;
+    --main-dark: #111111;
+    --main-grey: #303030;
+}
+
+
+/* NAVBAR */
+
+.bg-button-navbar{
+    background-color: var(--main-green);
+}
+
+
+
+
+
