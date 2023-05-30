@@ -11,8 +11,9 @@
 
 /* NAVBAR */
 
-navbar {
+.navbar {
     transition: 0.5;
+    background-color: white;
 }
 
 .bg-button{
@@ -37,7 +38,7 @@ navbar {
 
 .bg-main-black {
     background-color: var(--main-dark);
-    height: 210px;
+    padding : 50px 50px
 }
 
 
