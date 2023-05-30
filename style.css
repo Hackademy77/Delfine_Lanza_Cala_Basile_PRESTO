@@ -9,7 +9,7 @@
 }
 
 
-/* NAVBAR */
+/* Navbar */
 
 .navbar {
     transition: 0.5;
@@ -26,6 +26,7 @@
 
 
 /* Header */
+
 .button-size-shop{
     width: 220px ;
     padding: 15px 40px;
@@ -33,7 +34,7 @@
 }
 
 
-/* main */
+/* sezione contatori */
 
 
 .bg-main-black {
@@ -50,7 +51,7 @@
 }
 
 
-/* section card */
+/* ssezione cards */
 .fa-heart {
     cursor: pointer;
 }

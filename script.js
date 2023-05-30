@@ -1,14 +1,10 @@
-// elementi catturati
+// elementi catturati navbar
 let navbar = document.querySelector('.navbar')
 let navLinks = document.querySelectorAll ('.nav-link')
 let iconCustom =document.querySelector ('.icon-custom')
-let since = document.querySelector ('#since')
-let reviews = document.querySelector ('#reviews')
-let items = document.querySelector ('#items')
-let products = document.querySelector ('#products')
 
-// Eventi
 
+// Evento scroll navbar
 window.addEventListener('scroll' , () =>{
     if ( window.scrollY > 0){
         navbar.style.backgroundColor = 'var(--main-green)';
@@ -27,7 +23,15 @@ window.addEventListener('scroll' , () =>{
     }
 })
 
-// contatore
+
+//elementi catturati sezione contatori
+let since = document.querySelector ('#since')
+let reviews = document.querySelector ('#reviews')
+let items = document.querySelector ('#items')
+let products = document.querySelector ('#products')
+
+
+// eventi sezione contatori
 function createIntervall(number, element) {
     let counter = 0;
 
@@ -62,12 +66,11 @@ observer.observe(since);
 
 
 
-
-
-
-//sezione card
+//elementi catturati sezione cards
 let cardsWrapper = document.querySelector('.cards-wrapper');
 
+
+//oggetto card
 let cardProducts = [
     {name : 'Assorted Coffee', price : '35', url : 'media/coffee-asorted-400x400.jpg'},
     {name : 'Hand Sanitizer', price : '15', url : 'media/sanitizer-400x400.jpg'},
@@ -75,9 +78,10 @@ let cardProducts = [
     {name : 'Natural Extracted Edible Oil', price : '25', url : 'media/edible-oil-400x400.jpg'},
 ];
 
+//creazione card
 cardProducts.forEach((product) => {
     let div = document.createElement('div');
-    div.classList.add('col-12', 'col-md-3', 'my-3');
+    div.classList.add('col-12', 'col-lg-3', 'my-3', 'd-flex', 'flex-column', 'align-items-center');
     div.innerHTML= `
     <div class="card" style="width: 18rem;">
         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -88,21 +92,21 @@ cardProducts.forEach((product) => {
         <div class="card-body text-center">
             <h6 class="card-title">${product.name}</h6>
                 <p>€<span>${product.price}</span></p>
-                <i class="fa-regular fa-heart fa-lg" style="color: #ff0000;"></i>
+                <div>
+                    <button type="button" class="btn bg-button button-size-shop"><i class="fa-solid fa-cart-shopping fa-lg me-2" style="color: #ffffff;"></i >SHOP NOW</button>
+                </div>
+                <i class="fa-regular fa-heart fa-lg mt-4" style="color: #ff0000;"></i>
         </div>
     </div>
     `
     cardsWrapper.appendChild(div);
 })
 
-
-
-
-
-//evento
+//eventi cards
 let likes = document.querySelectorAll('.fa-heart');
-let imgLikes = document.querySelectorAll('.card-img-top')
+let imgLikes = document.querySelectorAll('.card-img-top');
 
+//evento click cuore
 likes.forEach((like) => {
     like.addEventListener('click', () => {
         like.classList.toggle('fa-solid');
@@ -110,7 +114,7 @@ likes.forEach((like) => {
     })
 })
 
-
+//evento click immagine
 imgLikes.forEach((img, index) => {
     img.addEventListener('dblclick', () => {
         likes[index].classList.toggle('fa-solid');
