@@ -27,38 +27,96 @@ window.addEventListener('scroll' , () =>{
     }
 })
 
-// contatori
+// contatore
+function createIntervall(number, element) {
+    let counter = 0;
 
-let counter = 0;
+    let interval = setInterval(() =>{
+        if (counter < number){
+            counter++ ;
+            element.innerHTML = counter;
+        }else {
+            clearInterval(interval);
+        }
+        
+    })
+}
 
-let interval = setInterval(() =>{
-    if (counter < 500){
-        counter++ ;
-        reviews.innerHTML = counter
-    }else if (counter < 2000) {
-        counter++ ;
-        since.innerHTML = counter
-       
-    }else if (counter < 2752) {
-        counter++ ;
-        products.innerHTML = counter
-       
-    }
-    else if (counter < 3537) {
-        counter++ ;
-        items.innerHTML = counter
-       
-    }else {
-        clearInterval(interval)
-    }
-    
+
+let confirm = false;
+
+let observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting && confirm == false) {
+            createIntervall(2000, since);
+            createIntervall(500, reviews);
+            createIntervall(753, products);
+            createIntervall(810, items);
+            confirm = true;
+
+        }
+    })
+})
+
+observer.observe(since);
+
+
+
+
+
+
+//sezione card
+let cardsWrapper = document.querySelector('.cards-wrapper');
+
+let cardProducts = [
+    {name : 'Assorted Coffee', price : '35', url : 'media/coffee-asorted-400x400.jpg'},
+    {name : 'Hand Sanitizer', price : '15', url : 'media/sanitizer-400x400.jpg'},
+    {name : 'Handpicked Red Chillies', price : '19', url : 'media/red-chillies-400x400.jpg'},
+    {name : 'Natural Extracted Edible Oil', price : '25', url : 'media/edible-oil-400x400.jpg'},
+];
+
+cardProducts.forEach((product) => {
+    let div = document.createElement('div');
+    div.classList.add('col-12', 'col-md-3', 'my-3');
+    div.innerHTML= `
+    <div class="card" style="width: 18rem;">
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            Sale
+                <span class="visually-hidden">unread messages</span>
+        </span>
+        <img src="${product.url}" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+            <h6 class="card-title">${product.name}</h6>
+                <p>€<span>${product.price}</span></p>
+                <i class="fa-regular fa-heart fa-lg" style="color: #ff0000;"></i>
+        </div>
+    </div>
+    `
+    cardsWrapper.appendChild(div);
 })
 
 
 
 
 
+//evento
+let likes = document.querySelectorAll('.fa-heart');
+let imgLikes = document.querySelectorAll('.card-img-top')
 
+likes.forEach((like) => {
+    like.addEventListener('click', () => {
+        like.classList.toggle('fa-solid');
+        like.style.color = 'red';
+    })
+})
+
+
+imgLikes.forEach((img, index) => {
+    img.addEventListener('dblclick', () => {
+        likes[index].classList.toggle('fa-solid');
+        likes[index].style.color = 'red';
+    })
+})
 
 
 
