@@ -72,10 +72,10 @@ let cardsWrapper = document.querySelector('.cards-wrapper');
 
 //oggetto card
 let cardProducts = [
-    {name : 'Assorted Coffee', price : '35', url : 'media/coffee-asorted-400x400.jpg'},
-    {name : 'Hand Sanitizer', price : '15', url : 'media/sanitizer-400x400.jpg'},
-    {name : 'Handpicked Red Chillies', price : '19', url : 'media/red-chillies-400x400.jpg'},
-    {name : 'Natural Extracted Edible Oil', price : '25', url : 'media/edible-oil-400x400.jpg'},
+    {name : 'Assorted Coffee', price : '35', url : 'media/coffee-asorted-400x400.jpg', category : 'Drink'},
+    {name : 'Hand Sanitizer', price : '15', url : 'media/sanitizer-400x400.jpg', category: 'Beauty'},
+    {name : 'Handpicked Red Chillies', price : '19', url : 'media/red-chillies-400x400.jpg', category: 'Food'},
+    {name : 'Natural Extracted Edible Oil', price : '25', url : 'media/edible-oil-400x400.jpg', category: 'Food'},
 ];
 
 //creazione card
@@ -91,6 +91,7 @@ cardProducts.forEach((product) => {
         <img src="${product.url}" class="card-img-top" alt="...">
         <div class="card-body text-center">
             <h6 class="card-title">${product.name}</h6>
+            <h6 class="card-title">${product.category}</h6>
                 <p>€<span>${product.price}</span></p>
                 <div>
                     <button type="button" class="btn bg-button button-size-shop"><i class="fa-solid fa-cart-shopping fa-lg me-2" style="color: #ffffff;"></i >SHOP NOW</button>
