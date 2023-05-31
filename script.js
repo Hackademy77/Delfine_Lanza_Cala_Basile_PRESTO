@@ -93,7 +93,7 @@ data.forEach((product , index) => {
             <h6 class="card-title">${product.category}</h6>
                 <p>€<span>${product.price}</span></p>
                 <div>
-                    <button type="button" class="btn bg-button button-size-shop"><i class="fa-solid fa-cart-shopping fa-lg me-2" style="color: #ffffff;"></i >SHOP NOW</button>
+                    <a href="./shop.html"><button type="button" class="btn bg-button button-size-shop"><i class="fa-solid fa-cart-shopping fa-lg me-2" style="color: #ffffff;"></i >SHOP NOW</button></a>
                 </div>
                 <i class="fa-regular fa-heart fa-lg mt-4" style="color: #ff0000;"></i>
         </div>
