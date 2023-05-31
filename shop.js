@@ -29,6 +29,8 @@ fetch('./shop.json')
 .then((response) => response.json())
 .then((data) => {
 
+    
+
     let categoriesWrapper = document.querySelector('#categoriesWrapper');
     // funzione creazione cards 
     function createCards() {
@@ -108,4 +110,24 @@ fetch('./shop.json')
         })
     })
 
+
+    //eventi cards
+let likes = document.querySelectorAll('.fa-heart');
+let imgLikes = document.querySelectorAll('.card-img-top');
+
+//evento click cuore
+likes.forEach((like) => {
+    like.addEventListener('click', () => {
+        like.classList.toggle('fa-solid');
+        like.style.color = 'red';
+    })
+})
+
+//evento click immagine
+imgLikes.forEach((img, index) => {
+    img.addEventListener('dblclick', () => {
+        likes[index].classList.toggle('fa-solid');
+        likes[index].style.color = 'red';
+    })
+})
 })
