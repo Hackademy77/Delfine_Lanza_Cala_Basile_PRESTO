@@ -23,6 +23,10 @@ window.addEventListener('scroll' , () =>{
     }
 })
 
+fetch('./shop.json')
+.then((response) => response.json())
+.then((data) => {
+
 
 //elementi catturati sezione contatori
 let since = document.querySelector ('#since')
@@ -70,25 +74,20 @@ observer.observe(since);
 let cardsWrapper = document.querySelector('.cards-wrapper');
 
 
-//oggetto card
-let cardProducts = [
-    {name : 'Assorted Coffee', price : '35', url : 'media/coffee-asorted-400x400.jpg', category : 'Drink'},
-    {name : 'Hand Sanitizer', price : '15', url : 'media/sanitizer-400x400.jpg', category: 'Beauty'},
-    {name : 'Handpicked Red Chillies', price : '19', url : 'media/red-chillies-400x400.jpg', category: 'Food'},
-    {name : 'Natural Extracted Edible Oil', price : '25', url : 'media/edible-oil-400x400.jpg', category: 'Food'},
-];
+
 
 //creazione card
-cardProducts.forEach((product) => {
+data.forEach((product , index) => {
+    if(index >= data.length - 4){
     let div = document.createElement('div');
-    div.classList.add('col-12', 'col-lg-3', 'my-3', 'd-flex', 'flex-column', 'align-items-center');
+    div.classList.add('col-12', 'col-md-3', 'my-3', 'mx-auto', 'd-flex', 'flex-column', 'align-items-center');
     div.innerHTML= `
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 16rem;">
         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
             Sale
                 <span class="visually-hidden">unread messages</span>
         </span>
-        <img src="${product.url}" class="card-img-top" alt="...">
+        <img src="${product.url}" class="card-img-top" style="height : 286px" alt="...">
         <div class="card-body text-center">
             <h6 class="card-title">${product.name}</h6>
             <h6 class="card-title">${product.category}</h6>
@@ -101,7 +100,9 @@ cardProducts.forEach((product) => {
     </div>
     `
     cardsWrapper.appendChild(div);
+    }
 })
+
 
 //eventi cards
 let likes = document.querySelectorAll('.fa-heart');
@@ -123,7 +124,7 @@ imgLikes.forEach((img, index) => {
     })
 })
 
-
+})
 
 
 
