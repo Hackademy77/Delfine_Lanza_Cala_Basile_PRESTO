@@ -107,7 +107,7 @@ fetch('./shop.json')
     }
 
 
-    
+    //evento filtro per categoria
     formCheckInput.forEach((input) => {
         input.addEventListener('click', () => {
             showForCategories();
@@ -116,7 +116,44 @@ fetch('./shop.json')
         })
     })
 
+    //funzione filtra per prezzo
 
+    let inputPrice = document.querySelector('#inputPrice');
+    let formLabel = document.querySelector('.form-label');
+
+    //funzione per trovare numero massimo
+    function numMax() {
+        let prices = data.map((element) => +element.price)
+        let maxPrice = Math.ceil(Math.max(...prices))
+        let minPrice = Math.min(...prices)
+
+        inputPrice.max = maxPrice
+        inputPrice.min = minPrice
+        inputPrice.value = maxPrice
+    
+    }
+
+    numMax()
+
+
+    function showForPrice() {
+        let filtered = data.filter((element) => +element.price <= +inputPrice.value).sort((a,b) => a.price -b.price)
+        console.log(filtered);
+
+        createCards(filtered)
+    }
+
+    showForPrice()
+
+    //evento filtro per prezzo
+    inputPrice.addEventListener('input', () =>{
+        formLabel.innerHTML = '€' + inputPrice.value
+        showForPrice()
+    })
+
+
+
+    
     //eventi cards
 let likes = document.querySelectorAll('.fa-heart');
 let imgLikes = document.querySelectorAll('.card-img-top');
@@ -137,3 +174,4 @@ imgLikes.forEach((img, index) => {
     })
 })
 })
+
