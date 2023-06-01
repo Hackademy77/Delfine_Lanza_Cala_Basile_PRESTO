@@ -153,6 +153,27 @@ fetch('./shop.json')
 
 
 
+    //funzione filtra per parola
+
+    let wordInput = document.querySelector('#wordInput');
+
+    function showForWord() {
+        let inputValue = wordInput.value
+        let filtered = data.filter((element) => element.name.toLowerCase().includes(inputValue.toLowerCase()))
+        
+        console.log(filtered);
+        createCards(filtered)
+    }
+    
+
+
+    //evento filtro per parola 
+    wordInput.addEventListener('input', () => {
+        showForWord()
+    })
+
+
+
     
     //eventi cards
 let likes = document.querySelectorAll('.fa-heart');
