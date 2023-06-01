@@ -93,15 +93,17 @@ fetch('./shop.json')
     let formCheckInput = document.querySelectorAll('.form-check-input');
 
     // funzione mostra per categoria
-    function showForCategories() {
+    function showForCategories(array) {
         let arrayCategories = Array.from(formCheckInput);
         let checkedInput = arrayCategories.find((element) => element.checked);
-        let filtered = data.filter((element) => element.category == checkedInput.id);
+        let filtered = array.filter((element) => element.category == checkedInput.id);
 
         if(checkedInput.id != 'All'){
-            createCards(filtered);
+            return filtered
+           /*  createCards(filtered); */
         } else {
-            createCards(data);
+            return data
+            /* createCards(data); */
         }
 
     }
@@ -110,8 +112,8 @@ fetch('./shop.json')
     //evento filtro per categoria
     formCheckInput.forEach((input) => {
         input.addEventListener('click', () => {
-            showForCategories();
-            
+            /* showForCategories(); */
+            globalFilter()
 
         })
     })
@@ -136,19 +138,20 @@ fetch('./shop.json')
     numMax()
 
 
-    function showForPrice() {
-        let filtered = data.filter((element) => +element.price <= +inputPrice.value).sort((a,b) => a.price -b.price)
-        console.log(filtered);
-
-        createCards(filtered)
+    function showForPrice(array) {
+        let filtered = array.filter((element) => +element.price <= +inputPrice.value).sort((a,b) => a.price - b.price)
+       
+        return filtered
+        /* createCards(filtered) */
     }
 
-    showForPrice()
+    showForPrice(data)
 
     //evento filtro per prezzo
     inputPrice.addEventListener('input', () =>{
         formLabel.innerHTML = '€' + inputPrice.value
-        showForPrice()
+        globalFilter()
+        /* showForPrice() */
     })
 
 
@@ -157,23 +160,33 @@ fetch('./shop.json')
 
     let wordInput = document.querySelector('#wordInput');
 
-    function showForWord() {
+    function showForWord(array) {
         let inputValue = wordInput.value
-        let filtered = data.filter((element) => element.name.toLowerCase().includes(inputValue.toLowerCase()))
+        let filtered = array.filter((element) => element.name.toLowerCase().includes(inputValue.toLowerCase()))
         
-        console.log(filtered);
-        createCards(filtered)
+        return filtered
+        /* createCards(filtered) */
     }
     
 
 
     //evento filtro per parola 
     wordInput.addEventListener('input', () => {
-        showForWord()
+        globalFilter()
+        /* showForWord() */
     })
 
 
+    //funzione globale
+    function globalFilter() {
+        let filteredByCategory = showForCategories(data);
+        let filteredByPrice = showForPrice(filteredByCategory);
+        let filteredByWord = showForWord(filteredByPrice);
 
+        createCards(filteredByWord)
+    }
+
+   
     
     //eventi cards
 let likes = document.querySelectorAll('.fa-heart');
