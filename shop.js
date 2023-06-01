@@ -30,11 +30,12 @@ fetch('./shop.json')
 .then((data) => {
 
     
-
+    let cardsWrapper = document.querySelector('#cardsWrapper');
     let categoriesWrapper = document.querySelector('#categoriesWrapper');
     // funzione creazione cards 
-    function createCards() {
-        data.forEach((card) =>{
+    function createCards(array) {
+        cardsWrapper.innerHTML='';
+        array.forEach((card) =>{
             let div = document.createElement('div');
             div.classList.add('col-12', 'col-md-6' , 'my-3');
             div.innerHTML = ` 
@@ -56,7 +57,7 @@ fetch('./shop.json')
 
         })
    }
-    createCards()
+    createCards(data);
 
     // funzione per verificare le categorie non ripetute
     function filterCategories() {
@@ -93,20 +94,25 @@ fetch('./shop.json')
 
     // funzione mostra per categoria
     function showForCategories() {
-        formCheckInput.forEach((input) => {
-            if(input.checked == true){
-                console.log('ciao');
-            }
-        })
+        let arrayCategories = Array.from(formCheckInput);
+        let checkedInput = arrayCategories.find((element) => element.checked);
+        let filtered = data.filter((element) => element.category == checkedInput.id);
+
+        if(checkedInput.id != 'All'){
+            createCards(filtered);
+        } else {
+            createCards(data);
+        }
 
     }
 
-    showForCategories()
-    console.log(formCheckInput);
 
+    
     formCheckInput.forEach((input) => {
         input.addEventListener('click', () => {
-            showForCategories()
+            showForCategories();
+            
+
         })
     })
 
